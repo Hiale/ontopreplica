@@ -348,7 +348,26 @@ namespace OnTopReplica {
             OnRegionDrawn(final);
         }
 
-		protected override void OnMouseDown(MouseEventArgs e) {
+        //Hiale
+
+	    public bool SelectMousePoint { get; set; }
+
+	    public delegate void PointSelectedHandler(object sender, Point region);
+
+        public event PointSelectedHandler PointSelected;
+
+        protected void RaisePointSelected(Point point)
+	    {
+            int left = Math.Max(0, point.X);
+            int top = Math.Max(0, point.Y);
+            var startPoint = ClientToThumbnail(new Point(left, top));
+            var evt = PointSelected;
+            if (evt != null)
+                evt(this, startPoint);
+	    }
+	    //Hiale
+
+        protected override void OnMouseDown(MouseEventArgs e) {
 			if (DrawMouseRegions && e.Button == MouseButtons.Left) {
                 //Start new region drawing
 				_drawingRegion = true;
@@ -366,7 +385,10 @@ namespace OnTopReplica {
                 //Region completed
 				_drawingRegion = false;
                 _drawingSuspended = false;
-				RaiseRegionDrawn(_regionStartPoint, _regionLastPoint);
+			    if (SelectMousePoint)
+			        RaisePointSelected(_regionStartPoint);
+			    else
+				    RaiseRegionDrawn(_regionStartPoint, _regionLastPoint);
 
 				this.Invalidate();
 			}
@@ -410,7 +432,7 @@ namespace OnTopReplica {
 		readonly static Pen RedPen = new Pen(Color.FromArgb(255, Color.Red), 1.5f); //TODO: check width
 
 		protected override void OnPaint(PaintEventArgs e) {
-			if (_drawingRegion) {
+			if (_drawingRegion && !SelectMousePoint) {
                 //Is currently drawing, show rectangle
 				int left = Math.Min(_regionStartPoint.X, _regionLastPoint.X);
 				int right = Math.Max(_regionStartPoint.X, _regionLastPoint.X);

@@ -109,6 +109,7 @@ namespace OnTopReplica.SidePanels {
             
             //Reset region drawing
             form.ThumbnailPanel.DrawMouseRegions = false;
+            form.ThumbnailPanel.SelectMousePoint = false; //Hiale
             form.ThumbnailPanel.RegionDrawn -= _regionDrawnHandler;
         }
 
@@ -315,6 +316,18 @@ namespace OnTopReplica.SidePanels {
 
         #endregion
 
-	}
+        private void ToggleButtonAuto_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ToggleButtonAuto.Checked)
+            {
+                ParentMainForm.ThumbnailPanel.SelectMousePoint = true;
+            }
+            else
+            {
+                ParentMainForm.ThumbnailPanel.SelectMousePoint = false;
+
+            }
+        }
+    }
 
 }

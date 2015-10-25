@@ -25,6 +25,7 @@
 		private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             this.groupRegions = new System.Windows.Forms.GroupBox();
+            this.ToggleButtonAuto = new System.Windows.Forms.CheckBox();
             this.checkRelative = new System.Windows.Forms.CheckBox();
             this.textRegionName = new OnTopReplica.FocusedTextBox();
             this.numH = new System.Windows.Forms.NumericUpDown();
@@ -51,6 +52,7 @@
             // 
             // groupRegions
             // 
+            this.groupRegions.Controls.Add(this.ToggleButtonAuto);
             this.groupRegions.Controls.Add(this.checkRelative);
             this.groupRegions.Controls.Add(this.textRegionName);
             this.groupRegions.Controls.Add(this.numH);
@@ -74,6 +76,19 @@
             this.groupRegions.TabIndex = 0;
             this.groupRegions.TabStop = false;
             this.groupRegions.Text = "Regions:";
+            // 
+            // ToggleButtonAuto
+            // 
+            this.ToggleButtonAuto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ToggleButtonAuto.Appearance = System.Windows.Forms.Appearance.Button;
+            this.ToggleButtonAuto.Location = new System.Drawing.Point(0, 174);
+            this.ToggleButtonAuto.Name = "ToggleButtonAuto";
+            this.ToggleButtonAuto.Size = new System.Drawing.Size(71, 27);
+            this.ToggleButtonAuto.TabIndex = 1;
+            this.ToggleButtonAuto.Text = "Auto";
+            this.ToggleButtonAuto.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ToggleButtonAuto.UseVisualStyleBackColor = true;
+            this.ToggleButtonAuto.CheckedChanged += new System.EventHandler(this.ToggleButtonAuto_CheckedChanged);
             // 
             // checkRelative
             // 
@@ -334,5 +349,6 @@
         private FocusedTextBox textRegionName;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.CheckBox checkRelative;
-	}
+        private System.Windows.Forms.CheckBox ToggleButtonAuto;
+    }
 }
