@@ -352,20 +352,29 @@ namespace OnTopReplica {
 
 	    public bool SelectMousePoint { get; set; }
 
-	    public delegate void PointSelectedHandler(object sender, Point region);
-
-        public event PointSelectedHandler PointSelected;
-
-        protected void RaisePointSelected(Point point)
+	    private void FindRegion(Point point)
 	    {
+	        var mainForm = Parent as MainForm;
+
             int left = Math.Max(0, point.X);
             int top = Math.Max(0, point.Y);
             var startPoint = ClientToThumbnail(new Point(left, top));
-            var evt = PointSelected;
-            if (evt != null)
-                evt(this, startPoint);
+
+            var final = AutoRegion.Find(startPoint, mainForm.CurrentThumbnailWindowHandle.Handle);
+
+            OnRegionDrawn(final);
 	    }
-	    //Hiale
+
+        //   protected void RaisePointSelected(Point point)
+        //{
+        //int left = Math.Max(0, point.X);
+        //int top = Math.Max(0, point.Y);
+        //var startPoint = ClientToThumbnail(new Point(left, top));
+        //       var evt = PointSelected;
+        //       if (evt != null)
+        //           evt(this, startPoint);
+        //}
+        //Hiale
 
         protected override void OnMouseDown(MouseEventArgs e) {
 			if (DrawMouseRegions && e.Button == MouseButtons.Left) {
@@ -386,7 +395,7 @@ namespace OnTopReplica {
 				_drawingRegion = false;
                 _drawingSuspended = false;
 			    if (SelectMousePoint)
-			        RaisePointSelected(_regionStartPoint);
+			        FindRegion(_regionStartPoint);
 			    else
 				    RaiseRegionDrawn(_regionStartPoint, _regionLastPoint);
 

@@ -316,18 +316,14 @@ namespace OnTopReplica.SidePanels {
 
         #endregion
 
+        //Hiale
+
         private void ToggleButtonAuto_CheckedChanged(object sender, EventArgs e)
         {
-            if (ToggleButtonAuto.Checked)
-            {
-                ParentMainForm.ThumbnailPanel.SelectMousePoint = true;
-            }
-            else
-            {
-                ParentMainForm.ThumbnailPanel.SelectMousePoint = false;
-
-            }
+            ParentMainForm.ThumbnailPanel.SelectMousePoint = ToggleButtonAuto.Checked;
         }
+
+	    //Hiale
     }
 
 }

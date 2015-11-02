@@ -65,7 +65,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>
     </DocumentationFile>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -110,8 +110,10 @@
     <Compile Include="AspectRatioForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="AutoRegion.cs" />
     <Compile Include="CloneClickEventArgs.cs" />
     <Compile Include="CloseRequestEventArgs.cs" />
+    <Compile Include="FloodFiller.cs" />
     <Compile Include="FullscreenFormManager.cs" />
     <Compile Include="FullscreenMode.cs" />
     <Compile Include="GeometryExtensions.cs" />
@@ -146,6 +148,7 @@
     <Compile Include="Native\HookMethods.cs" />
     <Compile Include="Native\HotKeyMethods.cs" />
     <Compile Include="Native\HT.cs" />
+    <Compile Include="Otsu.cs" />
     <Compile Include="Platforms\DebugPlatform.cs" />
     <Compile Include="Platforms\WindowsEight.cs" />
     <Compile Include="PluginRegionLocator.cs" />
@@ -254,6 +257,7 @@
     </Compile>
     <Compile Include="ThumbnailRegion.cs" />
     <Compile Include="WindowListMenuManager.cs" />
+    <Compile Include="WindowRect.cs" />
     <Compile Include="WindowSeekers\BaseWindowSeeker.cs" />
     <Compile Include="WindowSeekers\ByClassWindowSeeker.cs" />
     <Compile Include="WindowSeekers\ByTitleWindowSeeker.cs" />
